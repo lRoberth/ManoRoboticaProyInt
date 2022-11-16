@@ -85,6 +85,8 @@ void loop() {
     servo5.write(angle_s5); // pulgar
   #endif
 
+  Serial.println();
+  
   Serial.print("Menique: ");
   Serial.print(r_s1);
   Serial.print(" ohms, ");
