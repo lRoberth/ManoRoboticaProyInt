@@ -5,14 +5,14 @@ Servo servo2;
 Servo servo3;
 Servo servo4;
 Servo servo5;
-int pinservo1 = 2;
-int pinservo2 = 3;
-int pinservo3 = 4;
-int pinservo4 = 5;
-int pinservo5 = 6;
 
 // Config
-#define ENABLE true
+#define ENABLE true // true = habilitar movimiento de los servos, false = deshabilitar movimiento de los servos
+int pinservo1 = 2; // Menique
+int pinservo2 = 3; // Anular
+int pinservo3 = 4; // Corazon
+int pinservo4 = 5; // Indice
+int pinservo5 = 6; // Pulgar
 int Sensores[5] = {A0, A1, A2, A3, A4}; // Entradas donde esta conectado el sensor. El primero debe ser el menique, el segundo el anular, etc.. hasta terminar en el pulgar (orden de mano izquierda)
 float EST_NORMAL = 0.0; // Resistencia que entrega cuando el sensor no esta flexionado
 float EST_DOBLADO = 4755.0; // Resistencia que entrega cuando el sensor esta completamente flexionado
@@ -21,11 +21,12 @@ float V3 = 3.355; // Voltaje exacto que entrega en la salida 3.3v el Arduino
 float Res = 10000.0; // La resistencia que se usa para el divisor de voltaje
 
 void setup() {
-  servo1.attach(pinservo1, 610, 2550);
-  servo2.attach(pinservo2, 670, 2540);
-  servo3.attach(pinservo3, 660, 2600);
-  servo4.attach(pinservo4, 660, 2600);
-  servo5.attach(pinservo5, 660, 2600);
+  servo1.attach(pinservo1, 660, 2600); // Menique
+  servo2.attach(pinservo2, 660, 2600); // Anular
+  servo3.attach(pinservo3, 670, 2540); // Corazon
+  servo4.attach(pinservo4, 610, 2550); // Indice
+  servo5.attach(pinservo5, 660, 2600); // Pulgar
+
   pinMode(pinservo1, OUTPUT);
   pinMode(pinservo2, OUTPUT);
   pinMode(pinservo3, OUTPUT);
