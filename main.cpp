@@ -8,6 +8,7 @@ Servo servo5;
 
 // Config
 #define ENABLE true // true = habilitar movimiento de los servos, false = deshabilitar movimiento de los servos
+#define WAIT_EXECUTION true // true == El codigo no hace nada hasta que se conecte a una laptop y se abra el monitor serial a 9600 baud. false == el codigo se ejecuta sin necesidad de conectar una computadora
 int pinservo1 = 2; // Menique
 int pinservo2 = 3; // Anular
 int pinservo3 = 4; // Corazon
@@ -40,8 +41,10 @@ void setup() {
   pinMode(Sensores[4], INPUT);
 
   Serial.begin(9600);
+  #if WAIT_EXECUTION == true
   while(!Serial.available()){}
   delay(500);
+  #endif
   Serial.println("Para cambiar los valores de los sensores:");
   Serial.println("Establecer valor de extendido: Escribe 1");
   Serial.println("Establecer valor de flexionado: Escribe 2");
