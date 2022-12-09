@@ -40,9 +40,64 @@ void setup() {
   pinMode(Sensores[4], INPUT);
 
   Serial.begin(9600);
+  while(!Serial.available()){}
+  delay(500);
+  Serial.println("Para cambiar los valores de los sensores:");
+  Serial.println("Establecer valor de extendido: Escribe 1");
+  Serial.println("Establecer valor de flexionado: Escribe 2");
+  Serial.println();
 }
 
 void loop() {
+
+  bool readFirst = false;
+  bool readSecond = false;
+  if(Serial.available() > 0){
+    int inStr = Serial.read();
+    
+    if(inStr == 49){ // 1
+      readFirst = true;
+    }
+
+    if(inStr == 50){ // 2
+      readSecond = true;
+    }
+  }
+
+  if(readFirst){
+    Serial.println("Introduce el nuevo valor para extendido.");
+    while(!Serial.available()){ }
+    if(Serial.available()){
+      String str = Serial.readString();
+      float newNormal = str.toFloat();
+      EST_NORMAL = newNormal;
+      Serial.print("Nuevos valores: Extendido: ");
+      Serial.print(EST_NORMAL);
+      Serial.print("ohms, ");
+      Serial.print("Flexionado: ");
+      Serial.print(EST_DOBLADO);
+      Serial.println("ohms.");
+      readFirst = false;
+    }
+  }
+
+  if(readSecond){
+    Serial.println("Introduce el nuevo valor para flexionado en ohms.");
+    while(!Serial.available()){ }
+    if(Serial.available()){
+      String str = Serial.readString();
+      float newNormal = str.toFloat();
+      EST_DOBLADO = newNormal;
+      Serial.print("Nuevos valores: Extendido: ");
+      Serial.print(EST_NORMAL);
+      Serial.print("ohms, ");
+      Serial.print("Flexionado: ");
+      Serial.print(EST_DOBLADO);
+      Serial.println("ohms.");
+      readSecond = false;
+    }
+  }
+  
   int s1 = analogRead(Sensores[0]);
   float v_s1 = s1 * V3 / 1023.0;
   float r_s1 = Res * (V3 / v_s1 - 1.0);
