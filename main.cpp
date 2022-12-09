@@ -70,16 +70,16 @@ void loop() {
 
   #if ENABLE == true
   if(angle_s1 >= 0 && angle_s1 <= MAX_DEGREES)
-    servo4.write(angle_s1); // Menique
+    servo1.write(angle_s1); // Menique
   
   if(angle_s2 >= 0 && angle_s2 <= MAX_DEGREES)
-    servo3.write(angle_s2); // Anular
+    servo2.write(angle_s2); // Anular
   
   if(angle_s3 >= 0 && angle_s3 <= MAX_DEGREES)
-    servo2.write(angle_s3); // Corazon
+    servo3.write(angle_s3); // Corazon
   
   if(angle_s4 >= 0 && angle_s4 <= MAX_DEGREES)
-    servo1.write(angle_s4); // indice
+    servo4.write(angle_s4); // indice
   
   if(angle_s5 >= 0 && angle_s5 <= MAX_DEGREES)
     servo5.write(angle_s5); // pulgar
