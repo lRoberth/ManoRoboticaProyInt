@@ -42,7 +42,7 @@ void setup() {
 
   Serial.begin(9600);
   #if WAIT_EXECUTION == true
-  while(!Serial.available()){}
+  while(!Serial){}
   delay(500);
   #endif
   Serial.println("Para cambiar los valores de los sensores:");
